@@ -1,12 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+<%- include('./includes/head.ejs') %>
 </head>
+
 <body>
+        <%- include('./includes/nav.ejs') %>
+
+        <form action="/" method="POST">
+            <div class="section container">
+                <div class="field">
+                    <label>Build Name</label>
+                    <div class="control">
+                        <input class="input" type="text" id="name">
+                    </div> 
+                </div>
+                <div class="field">
+                    <label>CPU</label>
+                    <select class="form-control" id="cpu">
+                            <% for(var i=0; i < build.length; i++) { %>
+                                <option><%= build[i].cpuName %></option>
+                             <% } %>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Mother Board</label>
+                    <select>
+                            <% for(var i=0; i < build.length; i++) { %>
+                                <option><%= build[i].moboName %></option>
+                             <% } %>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Graphics Card</label>
+                    <select>
+                            <% for(var i=0; i < build.length; i++) { %>
+                                <option><%= build[i].gpuName %></option>
+                             <% } %>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Memory</label>
+                    <select>
+                            <% for(var i=0; i < build.length; i++) { %>
+                                <option><%= build[i].memoryName %></option>
+                             <% } %>
+                    </select>
+                </div>
+                <button class="button" type="submit">Create Build</button>
+            </div>
+            
+
+                <%- include('./includes/scripts.ejs') %>
+        </form>
     
 </body>
 </html>

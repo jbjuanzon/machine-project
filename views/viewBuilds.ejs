@@ -1,0 +1,37 @@
+<%- include('./includes/head.ejs') %>
+</head>
+
+<body>
+        <%- include('./includes/nav.ejs') %>
+        <main>
+                <% if (build.length > 0) { %>
+                <div class="grid">
+                    <% for (let pc of build) { %>
+                    <article class="card product-item">
+                        <header class="card__header">
+                            <h1 class="product__title"><%= pc.name %></h1>
+                        </header>
+                        <div class="card__image">
+                                <h2><%= pc.cpuName %></h2>
+                        </div>
+                        <div class="card__content">
+                            <h2><%= pc.moboName %></h2>
+                            <p> <%= pc.gpuName %>
+                            </p>
+                            <p> <%= pc.memoryName %>
+                            </p>
+                        </div>
+                        <div class="card__actions">
+                            <button class="btn">Add to Cart</button>
+                        </div>
+                    </article>
+                    <% } %>
+                </div>
+                <% } else { %>
+        
+                <h1>No Products Found!</h1>
+                <% } %>
+            </main>
+
+</body>
+</html>
