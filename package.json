@@ -1,0 +1,30 @@
+{
+  "name": "it114p-machine-problem",
+  "version": "1.0.0",
+  "description": "machine problem",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbjuanzon/machine-project.git"
+  },
+  "author": "John Benedict R. Juanzon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jbjuanzon/machine-project/issues"
+  },
+  "homepage": "https://github.com/jbjuanzon/machine-project#readme",
+  "dependencies": {
+    "@mdi/font": "^4.2.95",
+    "bulma": "^0.7.5",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "mysql2": "^1.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
