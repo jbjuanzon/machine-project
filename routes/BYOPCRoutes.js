@@ -5,7 +5,10 @@ const router = express.Router();
 
 router.get('/', BYOPCController.getFullBuild);
 router.get('/create-build', BYOPCController.getBuild)
+router.get('/build/delete/:id', BYOPCController.delete);
+router.get('/build/edit/:id', BYOPCController.getEditList);
 
-//router.post('/', BYOPCController.addBuilds);
+router.post('/', BYOPCController.postAddBuilds);
+router.post('/build/update/:id', BYOPCController.postUpdateList);
 
 module.exports = router;

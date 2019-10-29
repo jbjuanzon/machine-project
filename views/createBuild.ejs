@@ -3,44 +3,52 @@
 
 <body>
         <%- include('./includes/nav.ejs') %>
-
+    <div class="container">
         <form action="/" method="POST">
             <div class="section container">
                 <div class="field">
                     <label>Build Name</label>
                     <div class="control">
-                        <input class="input" type="text" id="name">
+                        <input class="text is-medium" type="text" name="name">
                     </div> 
                 </div>
                 <div class="field">
                     <label>CPU</label>
-                    <select class="form-control" id="cpu">
-                            <% for(var i=0; i < build.length; i++) { %>
-                                <option><%= build[i].cpuName %></option>
-                             <% } %>
+                    <select class="form-control" name="cpu">
+                        <% for(var i=0; i < 2; i++) { %>
+                                
+                                <option value="<%= i+1%>"><%= build[i].name %></option>
+                                
+                                <% } %>
                     </select>
                 </div>
                 <div class="field">
                     <label>Mother Board</label>
-                    <select>
-                            <% for(var i=0; i < build.length; i++) { %>
-                                <option><%= build[i].moboName %></option>
+                    <select class="form-control" name="mobo">
+                            <% for(var i=6; i < 8; i++) { %>
+                                
+                                <option value="<%= i-5%>"><%= build[i].name %></option>
+                                
                              <% } %>
                     </select>
                 </div>
                 <div class="field">
                     <label>Graphics Card</label>
-                    <select>
-                            <% for(var i=0; i < build.length; i++) { %>
-                                <option><%= build[i].gpuName %></option>
+                    <select class="form-control" name="gpu">
+                            <% for(var i=2; i < 4; i++) { %>
+                                
+                                <option value="<%= i-1%>"><%= build[i].name %></option>
+                                
                              <% } %>
                     </select>
                 </div>
                 <div class="field">
                     <label>Memory</label>
-                    <select>
-                            <% for(var i=0; i < build.length; i++) { %>
-                                <option><%= build[i].memoryName %></option>
+                    <select class="form-control" type="text" name="memory">
+                            <% for(var i=4; i < 6; i++) { %>
+                                
+                                <option value="<%= i-3%>"><%= build[i].name %></option>
+                                
                              <% } %>
                     </select>
                 </div>
@@ -50,6 +58,6 @@
 
                 <%- include('./includes/scripts.ejs') %>
         </form>
-    
+    </div>
 </body>
 </html>

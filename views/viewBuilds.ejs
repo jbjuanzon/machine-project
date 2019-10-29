@@ -4,13 +4,19 @@
 <body>
         <%- include('./includes/nav.ejs') %>
         <main>
+            
                 <% if (build.length > 0) { %>
                 <div class="grid">
+                    <div class="box">
                     <% for (let pc of build) { %>
+                        
                     <article class="card product-item">
+                            <a class="delete is-pulled-right is-danger" href="/build/delete/<%=pc.buildID%>"></a>
                         <header class="card__header">
-                            <h1 class="product__title"><%= pc.name %></h1>
+                            <h1 class="title"><%= pc.name %></h1>
+                            
                         </header>
+                        
                         <div class="card__image">
                                 <h2><%= pc.cpuName %></h2>
                         </div>
@@ -21,16 +27,24 @@
                             <p> <%= pc.memoryName %>
                             </p>
                         </div>
-                        <div class="card__actions">
-                            <button class="btn">Add to Cart</button>
+                        <div class="field is-grouped">
+                                <a class="button is-info is-small is is-outlined" href="/build/edit/<%=pc.buildID%>">
+                                    Update
+                                </a>
+                                
                         </div>
                     </article>
+                    
                     <% } %>
+                    
+                    </div>
+                    
                 </div>
                 <% } else { %>
         
-                <h1>No Products Found!</h1>
+                <h1>No PC Builds Found!</h1>
                 <% } %>
+            
             </main>
 
 </body>

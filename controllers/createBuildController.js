@@ -1,7 +1,7 @@
-const Build = require('../models/builds');
+const Builds = require('../models/builds');
 
 exports.getBuild = (req, res, next) => {
-    Build.fetchBuilds()
+    Builds.fetchParts()
     .then(([rows, fieldData]) => {
         console.log(rows)
         res.render('createBuild', {
@@ -14,9 +14,9 @@ exports.getBuild = (req, res, next) => {
 }
 
 exports.getFullBuild = (req, res, next) => {
-    Build.fetchBuilds()
+    Builds.fetchBuilds()
     .then(([rows, fieldData]) => {
-        console.log(rows)
+        //console.log(rows)
         res.render('viewBuilds', {
             build: rows,
             pageTitle: 'PC Builds',
@@ -28,9 +28,66 @@ exports.getFullBuild = (req, res, next) => {
 
 
 
-exports.addBuilds = (req, res, next) => {
-    console.log(req.body);
+exports.postAddBuilds = (req, res) => {
     
-    const builds = new Builds(null,req.body.txtTask);
+    const {
+        name,
+        cpu,
+        mobo,
+        gpu,
+        memory
+      } = req.body;
+    
+    const builds = new Builds(null,name,cpu,mobo,gpu,memory);
+    console.log(builds);
+
     builds.save().then(() => {res.redirect('/');}).catch(err => console.log(err));
 }
+
+exports.delete = (req, res) => {
+    const {
+      id
+    } = req.params;
+  
+    Builds.deleteById(id).then(() => {
+        res.redirect('/');
+      })
+      .catch(err => console.log(err));
+  };
+
+  exports.getEditList = (req, res) => {
+    const {
+      id
+    } = req.params;
+  
+    Builds.findBuildsById(id).
+    then(([rows, fieldData]) => {
+        res.render('createBuild', {
+          build: rows[0],
+          pageTitle: 'Edit Build',
+          path: ''
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  exports.postUpdateList = (req, res) => {
+    const {
+      id,
+      name,
+      cpu,
+      mobo,
+      gpu,
+      memory
+    } = req.body;
+  
+    const builds = new Builds(id, name, cpu, mobo, gpu, memory);
+    console.log(builds);
+  
+    builds
+      .update()
+      .then(() => {
+        res.redirect('/');
+      })
+      .catch(err => console.log(err));
+  };

@@ -18,18 +18,26 @@ module.exports = class Builds {
     }
 
     static fetchBuilds() {
-        return db.execute('SELECT * FROM buildView');
+        return db.execute('SELECT buildID, name, cpuName, moboName, gpuName, memoryName FROM buildView');
     }
+
+    static fetchParts() {
+        return db.execute('SELECT * from parts');
+    }
+
+    update() {
+        return db.execute('UPDATE builds SET name = ?, cpuID =  ?, moboName = ?, gpuName = ?, memoryName = ? WHERE ID = ?',
+          [this.name, this.cpu, this.mobo, this.gpu, this.memory, this.id, ]);
+      }
+
+      static deleteById(id) {
+        return db.execute(
+          'DELETE from builds WHERE buildID = ?',
+          [id]
+        );
+      }
 
     static findBuildsById(id) {
         return db.execute('SELECT * FROM builds WHERE buildID = ?', [id]);
-    }
-
-    static fetchCPU() {
-        return db.execute('SELECT cpuName FROM cpu');
-    }
-
-    static findCPUById(id) {
-        return db.execute('SELECT cpuName FROM cpu WHERE cpuID = ?', [id]);
     }
 }
